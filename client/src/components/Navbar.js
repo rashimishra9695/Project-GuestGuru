@@ -5,7 +5,7 @@ function Navbar() {
     <div>
       <nav class="navbar navbar-expand-lg">
         <a class="navbar-brand" href="#">
-          Guest-Guru
+          GUEST-GURU
         </a>
         <button
           class="navbar-toggler"
@@ -21,12 +21,12 @@ function Navbar() {
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
             <li class="nav-item active">
-              <a class="nav-link" href="#">
+              <a class="nav-link" href="/register">
                 Register
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">
+              <a class="nav-link" href="/login">
                 Login
               </a>
             </li>
