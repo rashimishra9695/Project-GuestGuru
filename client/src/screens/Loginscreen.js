@@ -1,13 +1,16 @@
 import React, { useState } from 'react'
+import {Link} from 'react-router-dom'
+
 
 function Loginscreen() {
     const [email , setemail] = useState('')
     const [password , setpassword] = useState('')
-    function Login(){
+   async function login(){
         const user = {
             email,
             password
         }
+        window.location.href='/home'  
     }
     return ( <div className='login'>
         <div className="row justify-content-center mt-1">
@@ -24,8 +27,8 @@ function Loginscreen() {
               className="form-control mt-1"  
               value={password} required onChange={(e)=>{setpassword(e.target.value)}}         
             />
-            
-            <button className="btn btn-success mt-3 mb-3 rounded-pill">LOGIN</button>
+          
+            {<button className="btn btn-success mt-3 mb-3 rounded-pill" onClick={login}>LOGIN</button> }
             <br/>
             <a style={{color:'black'}} href="/register" className="mt-2">Click Here To Register</a>
           </div>

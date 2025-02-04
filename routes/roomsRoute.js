@@ -16,10 +16,16 @@ router.get(
 router.post("/getroombyid", async(req, res) => {
     console.log(req.body);
     try {
-         const room = await Room.findOne({'_id' : req.body.roomid})
-         res.send(room)
-    } catch (error) {
-         return res.status(400).json({ message: error });
+        const room = await Room.findOne({ 'roomid': req.body.roomid });
+        console.log(room)
+    if (room) {
+      res.status(200).json(room);
+    } else {
+      res.status(404).json({ message: 'Room not found' });
     }
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
 });
+
 module.exports = router;

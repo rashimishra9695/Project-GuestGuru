@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import Room from "../components/Room";
+import Room from '../components/Room';
 
 function Homescreen() {
     const [rooms, setRooms] = useState([]);

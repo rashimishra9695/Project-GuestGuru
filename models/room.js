@@ -1,5 +1,10 @@
 const mongoose = require('mongoose');
 const roomSchema = mongoose.Schema({
+    roomid:{
+        type:Number,
+        required:true,
+        unique:true
+    },
     name:{
         type: String,
         required : true
@@ -17,7 +22,7 @@ const roomSchema = mongoose.Schema({
         required : true
     },
     imageurls:[],
-    currentbookings : [],
+    currentBookings : [],
     type:{
         type: String,
         required : true

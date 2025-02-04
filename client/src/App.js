@@ -1,6 +1,6 @@
 
 import './App.css';
-import {BrowserRouter,Routes,Route} from 'react-router-dom';
+import {BrowserRouter,Routes,Route,path} from 'react-router-dom';
 import Navbar from "./components/Navbar";
 import Homescreen from "./screens/Homescreen";
 import Bookingscreen from './screens/Bookingscreen';
