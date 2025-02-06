@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import {Link} from 'react-router-dom'
+import React, { useState,useEffect } from 'react'
+import axios from "axios";
 
 
 function Loginscreen() {
@@ -23,8 +23,12 @@ function Loginscreen() {
             password
         }
         try {
+          
           setloading(true)
           const result = await (await axios.post('/api/users/login',user)).data
+          setemail('')
+          setpassword('')
+          console.log(result);
           localStorage.setItem('currentUser',JSON.stringify(result))
           window.location.href='/home'
         } catch (error) {
