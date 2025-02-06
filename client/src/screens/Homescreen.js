@@ -12,7 +12,7 @@ function Homescreen() {
             setLoading(true);
             const { data } = await axios.get('/api/rooms/getallrooms');
             console.log("Fetched data:", data);
-            // Access the rooms array from the data object
+            
             if (data.rooms && Array.isArray(data.rooms)) {
                 setRooms(data.rooms);
             } else {

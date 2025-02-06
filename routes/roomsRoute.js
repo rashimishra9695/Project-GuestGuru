@@ -13,19 +13,20 @@ router.get(
     }
     
 );
-router.post("/getroombyid", async(req, res) => {
-    console.log(req.body);
-    try {
-        const room = await Room.findOne({ 'roomid': req.body.roomid });
-        console.log(room)
-    if (room) {
-      res.status(200).json(room);
-    } else {
-      res.status(404).json({ message: 'Room not found' });
-    }
+router.get("/getroombyid/:roomid", async (req, res) => {
+  try {
+      const { roomid } = req.params
+      console.log(`Fetching room with ID: ${roomid}`);
+
+      const room = await Room.findOne({ roomid });
+      if (!room) {
+          return res.status(404).json({ error: "Room not found" });
+      }
+
+      res.json(room);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+      console.error("Error fetching room details:", error);
+      res.status(500).json({ error: "Internal Server Error" });
   }
 });
-
 module.exports = router;

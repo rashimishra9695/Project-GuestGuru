@@ -1,25 +1,46 @@
 import React from 'react'
 import { useState} from 'react';
+import axios from "axios";
 
 function RegisterScreen () {
+        const [loading, setloading] = useState(false);
+      const [error, seterror] = useState(false);
     const [name , setname] = useState('')
     const [email, setemail] = useState('')
     const [password, setpassword] = useState('')
+    const [phone, setphone] = useState('')
     const [cpassword, setcpassword] = useState('')
 
-    function register(){
-        if(password==cpassword){
+    async function register(){
+        if(password!=cpassword){
+          alert('Passwords do not match');
+            return;
+            }
+        
         const user={
-            name,
-            email,
-            password,
-            cpassword
-        }
-        console.log(user);
+        name,
+        email,
+        password,
+        phone
+    };
+    
+    try {
+      setloading(true)
+      const {result} = await axios.post('/api/users/register',user)
+      setloading(false)
+      
+      setemail('')
+      setname('')
+      setphone('')
+      setcpassword('')
+      setpassword('')
+      alert('Registered Successfully.....you can proceed to login');
+    } catch (error) {
+      seterror(true)
+      setloading(false)
+      console.log(error);
     }
-    else{
-        alert('Password not matched')
-    } 
+
     }
     return (
         <div className='register'>
@@ -33,8 +54,8 @@ function RegisterScreen () {
           <div>
             <input required type="text" placeholder="name" className="form-control mt-1"  value={name} onChange={(e)=>{setname(e.target.value)}}/>
             <input required type="text" placeholder="email" className="form-control mt-1" value={email} onChange={(e)=>{setemail(e.target.value)}} />
-            <input required type="phone" placeholder="phone" className="form-control mt-1"  />
-            <input required type="text" placeholder="location" className="form-control mt-1"  /> <input
+            <input required type="phone" placeholder="phone" className="form-control mt-1" value={phone} onChange={(e)=>{setphone(e.target.value)}} />
+            <input
               type="password"
               placeholder="password"
               className="form-control mt-1"
@@ -56,7 +77,7 @@ function RegisterScreen () {
         </div>
       </div>
     </div>
-    )
+    );
 }
 
 export default RegisterScreen

@@ -3,21 +3,49 @@ import {Link} from 'react-router-dom'
 
 
 function Loginscreen() {
-    const [email , setemail] = useState('')
-    const [password , setpassword] = useState('')
+    const [email , setemail] = useState('');
+    const [password , setpassword] = useState('');
+    const[loading, setloading]=useState(false)
+    const[error, seterror]=useState(false)
+    const[success, setsuccess]=useState(false) 
+    useEffect(() => {
+
+      if(localStorage.getItem('currentUser'))
+      {
+          window.location.href='/home'
+      }
+    
+}, [])
+
    async function login(){
         const user = {
             email,
             password
         }
-        window.location.href='/home'  
-    }
+        try {
+          setloading(true)
+          const result = await (await axios.post('/api/users/login',user)).data
+          localStorage.setItem('currentUser',JSON.stringify(result))
+          window.location.href='/home'
+        } catch (error) {
+          seterror(true)
+          setloading(false)
+          console.log(error);
+          
+        }
+      }
+         
+    
     return ( <div className='login'>
-        <div className="row justify-content-center mt-1">
+        <div className="row justify-content-center mt-5">
           <div className="col-md-3 mt-3 text-left shadow-lg p-3 mb-5 bg-white rounded">
           <h2 className="text-center m-2" style={{ fontSize: "35px" }}>
             Login
           </h2>
+
+          {loading && (<h1>Loading...</h1>)} 
+          {error && (<h1>Invalid Credentials</h1>)}
+          {success && (<h1>User Login Successfull</h1> )}
   
         <div>
             <input required type="text" placeholder="email" className="form-control mt-1"  value={email} onChange={(e)=>{setemail(e.target.value)}} />
