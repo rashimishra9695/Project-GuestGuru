@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Room from '../components/Room';
+import Loader from "../components/Loader";
+
 
 function Homescreen() {
     const [rooms, setRooms] = useState([]);
@@ -34,7 +36,7 @@ function Homescreen() {
         <div className="container">
         
             {loading ? (
-                <h1>Loading...</h1>
+                <Loader/>
             ) : error ? (
                 <h1>Error occurred!</h1>
             ) : (

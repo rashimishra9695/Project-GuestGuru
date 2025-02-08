@@ -1,5 +1,7 @@
-import { useState, useEffect } from "react";
+import React,{ useState, useEffect } from "react";
 import axios from "axios";
+import Loader from "../components/Loader";
+
 import { useParams } from "react-router-dom";
 
 function Bookingscreen() {
@@ -26,23 +28,47 @@ function Bookingscreen() {
 
   return (
     <div>
-      <h1>Booking Details</h1>
+      
       {loading ? (
-        <p>Loading...</p>
+        <Loader/>
       ) : error ? (
         <p style={{ color: "red" }}>{error}</p>
-      ) : room ? (
-        <div>
-          <h1>Room ID: {room.roomid}</h1>
-          <p>Room Name: {room.name}</p>
-          <p>Description: {room.description}</p>
-          <p>Price per Day: ${room.rentperday}</p>
-        </div>
       ) : (
-        <p>No room details available</p>
+        <div className='m-5'>
+          <div className="row justify-content-center mt-5 bs">
+            <div className="col md-5">
+            
+            <h1>{room.name}</h1>
+            <img src={`/images/${room.imageurls[0]}`} className="bigimg" />
+            </div>
+            <div className="col md-5">
+            <div style={{textAlign:'right'}}>
+            <h1>Booking Details</h1>
+            <hr/>
+            <b>
+            <p>Name: </p>
+            <p>From Date: </p>
+            <p>To Date: </p>
+            <p>Max Count : {room.maxCount}</p>
+            </b>
+            </div>
+            <div style={{textAlign:'right'}}>
+            <h1>Amount</h1>
+            <b>
+            <p>Total Days: </p>
+            <p>Rent per day: {room.rentperday}</p>
+            <p>Total Amount: </p>
+            </b>
+            </div>
+            <div style={{ float: 'right' }}>
+            <button className='btn btn-primary'>Pay Now</button>
+            </div>
+            
+            </div>
+            </div>
+            </div>
       )}
-    </div>
-  );
-}
+      </div>
+  )}
 
 export default Bookingscreen;

@@ -1,6 +1,7 @@
 const express = require('express');
 const router =  express.Router();
-const Room = require('../models/room')
+const Room = require('../models/room');
+const { check, validationResult } = require("express-validator");
 router.get(
     "/getallrooms",  async(req,res) =>{
         try {
@@ -13,20 +14,31 @@ router.get(
     }
     
 );
-router.get("/getroombyid/:roomid", async (req, res) => {
-  try {
-      const { roomid } = req.params
-      console.log(`Fetching room with ID: ${roomid}`);
-
-      const room = await Room.findOne({ roomid });
-      if (!room) {
+router.get(
+    "/getroombyid/:roomId",
+    [
+      check("roomId", "Invalid room ID format").isMongoId(),
+    ],
+    async (req, res) => {
+      try {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+          return res.status(400).json({ errors: errors.array() });
+        }
+  
+        const { roomId } = req.params;
+        console.log(`Fetching room with ID: ${roomId}`);
+  
+        const room = await Room.findById(roomId);
+        if (!room) {
           return res.status(404).json({ error: "Room not found" });
+        }
+  
+        res.json(room);
+      } catch (error) {
+        console.error("Error fetching room details:", error);
+        res.status(500).json({ error: "Internal Server Error" });
       }
-
-      res.json(room);
-  } catch (error) {
-      console.error("Error fetching room details:", error);
-      res.status(500).json({ error: "Internal Server Error" });
-  }
-});
+    }
+  );
 module.exports = router;

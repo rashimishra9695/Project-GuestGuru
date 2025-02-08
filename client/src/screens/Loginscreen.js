@@ -12,7 +12,7 @@ function Loginscreen() {
 
       if(localStorage.getItem('currentUser'))
       {
-          window.location.href='/home'
+        
       }
     
 }, [])

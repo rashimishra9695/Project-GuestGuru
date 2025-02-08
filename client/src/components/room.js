@@ -1,4 +1,4 @@
-import React, { useState , useEffect } from "react";
+import React, { useState } from "react";
 import { Modal, Carousel } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
@@ -17,11 +17,11 @@ function Room({ room }) {
         <h1>{room.name}</h1>
         <p>Parking , Reception , Free Wifi</p>
         <p>
-          <b>Max Count : {room.maxcount}</b>
+          <b>Max Count : {room.maxCount}</b>
         </p>
         <p>
           <b>Phonenumber : </b>
-          {room.phonenumber}
+          {room.phoneNumber}
         </p>
         <p>
           <b>Type : {room.type}</b>
