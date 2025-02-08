@@ -1,6 +1,7 @@
 import React,{ useState, useEffect } from "react";
 import axios from "axios";
 import Loader from "../components/Loader";
+import Error from "../components/Error";
 
 import { useParams } from "react-router-dom";
 
@@ -31,9 +32,7 @@ function Bookingscreen() {
       
       {loading ? (
         <Loader/>
-      ) : error ? (
-        <p style={{ color: "red" }}>{error}</p>
-      ) : (
+      ) : room ? (
         <div className='m-5'>
           <div className="row justify-content-center mt-5 bs">
             <div className="col md-5">
@@ -66,9 +65,13 @@ function Bookingscreen() {
             
             </div>
             </div>
-            </div>
-      )}
+            
+      
       </div>
-  )}
+  
+      ) : (<Error/>)}
+      </div>
+      );
+    }
 
 export default Bookingscreen;

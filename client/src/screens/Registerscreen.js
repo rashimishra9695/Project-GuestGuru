@@ -1,10 +1,16 @@
 import React from 'react'
 import { useState} from 'react';
 import axios from "axios";
+import Loader from "../components/Loader";
+import Error from "../components/Error";
+import Success from "../components/Success";
+
 
 function RegisterScreen () {
-        const [loading, setloading] = useState(false);
+      const [loading, setloading] = useState(false);
       const [error, seterror] = useState(false);
+      const [success, setsuccess] = useState(false);
+
     const [name , setname] = useState('')
     const [email, setemail] = useState('')
     const [password, setpassword] = useState('')
@@ -28,6 +34,7 @@ function RegisterScreen () {
       setloading(true)
       const {result} = await axios.post('/api/users/register',user)
       setloading(false)
+      setsuccess(true)
       
       setemail('')
       setname('')
@@ -44,11 +51,14 @@ function RegisterScreen () {
     }
     return (
         <div className='register'>
+          {loading&&(<Loader/>)}
+          {error&&(<Error/>)}
       <div className="row justify-content-center mt-5">
-        <div className="col-md-3 mt-3 text-left shadow-lg p-3 mb-5 bg-white rounded">
+        <div className="col-md-5 mt-5 text-left shadow-lg p-5 mb-5">
+        {success&&(<Success message='Registered Successfully'/>)}
 
-      
-          <h2 className="text-center m-2" style={{ fontSize: "35px" }}>
+        
+          <h2 className="text-center m-1">
             Register
           </h2>
           <div>
@@ -74,9 +84,10 @@ function RegisterScreen () {
             <br/>
             <a style={{color:'black'}} href="/login">Click Here To Login</a>
           </div>
+          </div>
         </div>
       </div>
-    </div>
+    
     );
 }
 

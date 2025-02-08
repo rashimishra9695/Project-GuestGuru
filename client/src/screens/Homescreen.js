@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Room from '../components/Room';
 import Loader from "../components/Loader";
+import  Error from "../components/Error";
 
 
 function Homescreen() {
@@ -34,19 +35,23 @@ function Homescreen() {
 
     return (
         <div className="container">
+            <div className="row justify-content-center mt-5 ">
         
             {loading ? (
-                <Loader/>
-            ) : error ? (
-                <h1>Error occurred!</h1>
-            ) : (
+               <h1><Loader/></h1> 
+            ) : rooms.length>1 ?(
                 rooms.map((room) => {
-                    return <div className="col md-9 mt-2">
+                    return <div className="col md-9 mt-3">
                         <Room room={room}/>
                         </div>
                 })
+                
+            ) : (
+                <Error/>
+                
             )}
           </div>  
+          </div>
     
     );
 }

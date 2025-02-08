@@ -1,13 +1,14 @@
 import React, { useState,useEffect } from 'react'
 import axios from "axios";
+import Loader from "../components/Loader";
+import Error from "../components/Error";
 
 
 function Loginscreen() {
     const [email , setemail] = useState('');
     const [password , setpassword] = useState('');
-    const[loading, setloading]=useState(false)
-    const[error, seterror]=useState(false)
-    const[success, setsuccess]=useState(false) 
+    const[loading, setloading]=useState(false);
+    const[error, seterror]=useState(false);
     useEffect(() => {
 
       if(localStorage.getItem('currentUser'))
@@ -34,22 +35,24 @@ function Loginscreen() {
         } catch (error) {
           seterror(true)
           setloading(false)
-          console.log(error);
+        
           
         }
       }
          
     
     return ( <div className='login'>
+       {loading && (<Loader/>)} 
+       
         <div className="row justify-content-center mt-5">
           <div className="col-md-3 mt-3 text-left shadow-lg p-3 mb-5 bg-white rounded">
+          {error && (<Error message="Invalid Credentials"/>)}
           <h2 className="text-center m-2" style={{ fontSize: "35px" }}>
             Login
           </h2>
 
-          {loading && (<h1>Loading...</h1>)} 
-          {error && (<h1>Invalid Credentials</h1>)}
-          {success && (<h1>User Login Successfull</h1> )}
+         
+    
   
         <div>
             <input required type="text" placeholder="email" className="form-control mt-1"  value={email} onChange={(e)=>{setemail(e.target.value)}} />

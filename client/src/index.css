@@ -96,21 +96,83 @@ font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   border-radius: 5px;
   
 }
-input{
+.input{
   box-shadow: none !important;
   margin-top: 10px;
   border: 1px solid black !important;
 }
  
-h2{
+.h2{
   font-size: 30px !important;
   padding: 10px;
   font-weight: bold !important;
   text-align: center;
 }
 
-.register
-{
-  
+/* Container for the register form */
+.register {
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 50vh;
+  width:auto;
+
+
 }
 
+/* Style for the form container */
+.register .col-md-5 {
+  width: 500px;
+  background-color: #fff;
+
+}
+
+/* Style for form inputs */
+.register .form-control {
+  border-radius: 4px;
+  margin-top: 2rem;
+}
+
+/* Style for the form title */
+.register h2 {
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 5rem;
+}
+
+
+.register .btn-primary {
+  border-radius: 20px;
+  padding: 0.5rem 1rem;
+  width: 400px;
+}
+
+
+.register a {
+  color: #007bff;
+  text-decoration:underline;
+}
+
+.register a:hover {
+  text-decoration: underline;
+}
+
+ 
+  .register .col-md-5 {
+    
+    padding: 3rem;
+  }
+
+  .register h2 {
+    font-size: 1.5rem;
+  }
+
+
+  .loader-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Full viewport height */
+    background-color: #f7f7f7; /* Optional: Background color */
+    
+  }
