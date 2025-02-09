@@ -1,4 +1,8 @@
 import React from "react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser, faBars } from '@fortawesome/free-solid-svg-icons';
+import { library } from '@fortawesome/fontawesome-svg-core';
+
 
 function Navbar() {
   const user = JSON.parse(localStorage.getItem("currentUser"));
@@ -21,32 +25,28 @@ function Navbar() {
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <span class="navbar-toggler-icon" style={{color:"white"}}></span>
+          <span class="navbar-toggler-icon" ><FontAwesomeIcon icon={faBars} /></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav mr-5">
-            {user ? (
-              <>
-                <div class="dropdown">
-                  <button
-                    class="btn btn-secondary dropdown-toggle"
-                    type="button"
-                    data-toggle="dropdown"
-                    aria-expanded="false"
-                  >
-                    {user.name}
-                  </button>
-                  <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">
-                      Bookings
-                    </a>
-                    <a class="dropdown-item" href="#" onClick={logout}>
-                      Logout
-                    </a>
-                    
-                  </div>
+          {user ? (
+              <li className="nav-item dropdown">
+                <a
+                  className="nav-link dropdown-toggle"
+                  href="#"
+                  id="navbarDropdown"
+                  role="button"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  <FontAwesomeIcon icon={faUser} /> {user.name}
+                </a>
+                <div className="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                  <a className="dropdown-item" href="#">Bookings</a>
+                  <a className="dropdown-item" href="#" onClick={logout}>Logout</a>
                 </div>
-              </>
+              </li>
             ) : (
               <>
                 <li class="nav-item active">

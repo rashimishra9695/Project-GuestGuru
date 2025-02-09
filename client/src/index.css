@@ -108,71 +108,50 @@ font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-weight: bold !important;
   text-align: center;
 }
-
-/* Container for the register form */
 .register {
-  display:flex;
+  display:block;
   justify-content: center;
   align-items: center;
   min-height: 50vh;
-  width:auto;
-
+  width:100%;
 
 }
 
 /* Style for the form container */
 .register .col-md-5 {
-  width: 500px;
+  width:100%;
+  max-width: 900px; /* Adjust this value to set a max width for the form */
   background-color: #fff;
-
+  padding: 2rem;
+  box-shadow: 0 3 10px rgba(0, 0, 0, 0.5); /* Optional: Add a subtle shadow for better contrast */
 }
 
 /* Style for form inputs */
 .register .form-control {
   border-radius: 4px;
-  margin-top: 2rem;
+  margin-top: 1rem;
+  width: 100%;
 }
 
 /* Style for the form title */
 .register h2 {
   font-weight: bold;
   color: #333;
-  margin-bottom: 5rem;
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
 }
-
 
 .register .btn-primary {
   border-radius: 20px;
   padding: 0.5rem 1rem;
-  width: 400px;
+  max-width: fit-content;
 }
-
 
 .register a {
   color: #007bff;
-  text-decoration:underline;
+  text-decoration: underline;
 }
 
 .register a:hover {
   text-decoration: underline;
 }
-
- 
-  .register .col-md-5 {
-    
-    padding: 3rem;
-  }
-
-  .register h2 {
-    font-size: 1.5rem;
-  }
-
-
-  .loader-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh; /* Full viewport height */
-    background-color: #f7f7f7; /* Optional: Background color */
-    
-  }
