@@ -1,14 +1,21 @@
 import React from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faBars } from '@fortawesome/free-solid-svg-icons';
-import { library } from '@fortawesome/fontawesome-svg-core';
 
 
 function Navbar() {
-  const user = JSON.parse(localStorage.getItem("currentUser"));
-  function logout(){
-    localStorage.removeItem('currentUser')
-    window.location.href='/login'
+  let user;
+
+  try {
+    const storedUser = localStorage.getItem("currentUser");
+    user = storedUser ? JSON.parse(storedUser) : null;
+  } catch (e) {
+    console.error('Error parsing user data from localStorage', e);
+    user = null;
+  }
+  function logout() {
+    localStorage.removeItem('currentUser');
+    window.location.href = '/login';
   }
   return (
     <div>

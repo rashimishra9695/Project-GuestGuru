@@ -45,7 +45,7 @@ function Bookingscreen() {
             <h1>Booking Details</h1>
             <hr/>
             <b>
-            <p>Name: </p>
+            <p>Name: {} </p>
             <p>From Date: </p>
             <p>To Date: </p>
             <p>Max Count : {room.maxCount}</p>
